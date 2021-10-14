@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
 
@@ -9,6 +7,7 @@ namespace Visuals
     {
 		public static string Run(string command)
 		{
+#if UNITY_EDITOR_WIN
 			var processInfo = new ProcessStartInfo();
 			processInfo.RedirectStandardOutput = true;
 			processInfo.WindowStyle = ProcessWindowStyle.Hidden;
@@ -21,8 +20,10 @@ namespace Visuals
 			var process = Process.Start(processInfo);
 			string output = process.StandardOutput.ReadToEnd();
 			process.Close();
-
 			return output;
+#else
+			return String.Empty;
+#endif
 		}
 	}
 }
