@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Visuals
 {
-    public class CommandLine : MonoBehaviour
+    public class CommandLine
     {
 		public static string Run(string command)
 		{
@@ -16,14 +16,16 @@ namespace Visuals
 
 #if UNITY_EDITOR_WIN
 			processInfo.FileName = "cmd.exe";
+			processInfo.Arguments = "\c " + command;
 #else
 #if UNITY_EDITOR_OSX
 			processInfo.FileName = "/bin/bash";
+			processInfo.Arguments = $"-c \" {command} \"";
 #endif
 #endif
 			processInfo.WorkingDirectory = Application.dataPath.Replace("/Assets", "");
-			processInfo.Arguments = "/c " + command;
-
+			
+			
 			var process = Process.Start(processInfo);
 			string output = process.StandardOutput.ReadToEnd();
 			process.Close();
