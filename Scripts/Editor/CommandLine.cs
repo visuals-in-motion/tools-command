@@ -16,7 +16,7 @@ namespace Visuals
 
 #if UNITY_EDITOR_WIN
 			processInfo.FileName = "cmd.exe";
-			processInfo.Arguments = "\c " + command;
+			processInfo.Arguments = "/c " + command;
 #else
 #if UNITY_EDITOR_OSX
 			processInfo.FileName = "/bin/bash";
