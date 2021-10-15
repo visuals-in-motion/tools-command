@@ -4,7 +4,7 @@ using UnityEditor;
 
 namespace Visuals
 {
-#if UNITY_EDITOR
+#if UNITY_EDITOR_WIN
     [InitializeOnLoad]
     public class AddDefine
     {
