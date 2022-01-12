@@ -6,7 +6,7 @@ namespace Visuals
 {
     public class CommandLine
     {
-		public static string Run(string command, string workingDirectory = null)
+		public static string Run(string command, string workingDirectory = null, bool enableOutput = true)
 		{
 			var processInfo = new ProcessStartInfo();
 			processInfo.RedirectStandardOutput = true;
@@ -21,11 +21,10 @@ namespace Visuals
 			processInfo.FileName = "/bin/bash";
 			processInfo.Arguments = $"-c \" {command} \"";
 #endif
-			processInfo.WorkingDirectory = (string.IsNullOrEmpty(workingDirectory)) ? Application.dataPath.Replace("/Assets", "") : workingDirectory;
-			
+			processInfo.WorkingDirectory = (string.IsNullOrEmpty(workingDirectory)) ? Application.dataPath.Replace("/Assets", "") : workingDirectory;			
 			
 			var process = Process.Start(processInfo);
-			string output = process.StandardOutput.ReadToEnd();
+			string output = (enableOutput) ? process.StandardOutput.ReadToEnd() : string.Empty;
 			process.Close();
 			return output;
 		}

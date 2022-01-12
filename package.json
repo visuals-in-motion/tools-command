@@ -1,6 +1,6 @@
 {
   "name": "ru.visuals.command",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Пакет для работы с командной строкой в Unity",
   "repository": {
     "type": "git",
