@@ -22,11 +22,11 @@ namespace Visuals
 			processInfo.Arguments = $"-c \" {command} \"";
 #endif
 			processInfo.WorkingDirectory = (string.IsNullOrEmpty(workingDirectory)) ? Application.dataPath.Replace("/Assets", "") : workingDirectory;
-			Debug.LogError("Command: " + command);
-			Debug.LogError("WorkingDirectory: " + processInfo.WorkingDirectory);
+			UnityEngine.Debug.LogError("Command: " + command);
+			UnityEngine.Debug.LogError("WorkingDirectory: " + processInfo.WorkingDirectory);
 			var process = Process.Start(processInfo);
 			string output = (enableOutput) ? process.StandardOutput.ReadToEnd() : string.Empty;
-			Debug.LogError("output: " + output);
+			UnityEngine.Debug.LogError("output: " + output);
 			process.Close();
 			return output;
 		}
