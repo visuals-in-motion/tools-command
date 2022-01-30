@@ -21,10 +21,12 @@ namespace Visuals
 			processInfo.FileName = "/bin/bash";
 			processInfo.Arguments = $"-c \" {command} \"";
 #endif
-			processInfo.WorkingDirectory = (string.IsNullOrEmpty(workingDirectory)) ? Application.dataPath.Replace("/Assets", "") : workingDirectory;			
-			
+			processInfo.WorkingDirectory = (string.IsNullOrEmpty(workingDirectory)) ? Application.dataPath.Replace("/Assets", "") : workingDirectory;
+			Debug.LogError("Command: " + command);
+			Debug.LogError("WorkingDirectory: " + processInfo.WorkingDirectory);
 			var process = Process.Start(processInfo);
 			string output = (enableOutput) ? process.StandardOutput.ReadToEnd() : string.Empty;
+			Debug.LogError("output: " + output);
 			process.Close();
 			return output;
 		}
